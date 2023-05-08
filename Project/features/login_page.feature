@@ -3,18 +3,12 @@ Feature: Check if you can login to the desired page
   Background:
     Given I am on the https://jules.app page
 
-# Scenariul 1: Introducem username si parola valide si ne logam
-# Scenariul 2: Introducem username corect si parola gresita
-# Scenariul 3: Introducem username gresit si parola corecta
-# Scenariul 4: Introducem username gresit si parola gresita
-# Scenariul 5: Introducem username incorrect si parola gresita
-# Scenariul 6: Introducem username incorrect si parola corecta
-
-
-  Scenario: Check if you can Log In with correct credentials
-    When I insert username "nick_el_tigre@yahoo.com" and password "Digital1!"
-    And I click the login button
-    Then I can login into the application and I am redirected to the https://jules.app/search/all page
+# Scenariul 1: Introducem username corect si parola gresita
+# Scenariul 2: Introducem username gresit si parola corecta
+# Scenariul 3: Introducem username gresit si parola gresita
+# Scenariul 4: Introducem username incorrect si parola gresita
+# Scenariul 5: Introducem username incorrect si parola corecta
+# Scenariul 6: Introducem username si parola valide si ne logam
 
   Scenario Outline: Check if you can not log in the application page with incorrect credentials
     When I insert username "<username>" and password "<password>"
@@ -33,3 +27,8 @@ Feature: Check if you can login to the desired page
     | utilizator_gresit | parola | no_user |
     | wrong_user      | incorrect_password   | Please enter a valid email address! |
     | wrong_user      | Digital1!           | Please enter a valid email address! |
+
+  Scenario: Check if you can Log In with correct credentials
+    When I insert username "nick_el_tigre@yahoo.com" and password "Digital1!"
+    And I click the login button
+    Then I can login into the application and I am redirected to the https://jules.app/search/all page
