@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from base_page import BasePage
+from Project.base_page import BasePage
 
 
 class LoginPage(BasePage):
@@ -18,7 +18,6 @@ class LoginPage(BasePage):
 
     def insert_password(self, password):
         self.chrome.find_element(*self.PASSWORD).send_keys(password)
-
 
     def click_login_button(self):
         self.chrome.find_element(*self.LOGIN).click()
