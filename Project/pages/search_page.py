@@ -8,8 +8,6 @@ from base_page import BasePage
 
 class SearchBox(BasePage):
     ALLITEMSAREA = (By.XPATH, '//*[@id="root"]/div[1]/div[3]/div/div[3]/div[2]/div[2]/div/div/input')
-    MYITEMSAREA = (By.XPATH, '//*[@id="root"]/div[1]/div[3]/div/div[3]/div[2]/div[2]/div/div/input')
-    EXTERNALITEMSAREA = (By.XPATH, '//*[@id="root"]/div[1]/div[3]/div/div[3]/div[2]/div[2]/div/div/input')
     SEARCHTAG = (By.XPATH, '//*[@id="root"]/div[1]/div[3]/div/div[3]/div[2]/div[2]/div/div/div[1]/div/span[2]')
     NOTIFBELL = (By.XPATH, '//*[@id="root"]/div[1]/div[1]/div/div[2]/div[1]/div')
     NOTIFMESSAGE = (By.XPATH, '//*[@id="root"]/div[5]/div[2]/div[2]/span[2]')
@@ -40,13 +38,13 @@ class SearchBox(BasePage):
         self.chrome.find_element(*self.ALLITEMSAREA).send_keys(Keys.ENTER)
 
     def insert_search_my_items(self):
-        self.chrome.find_element(*self.MYITEMSAREA).send_keys('another')
-        self.chrome.find_element(*self.MYITEMSAREA).send_keys(Keys.ENTER)
+        self.chrome.find_element(*self.ALLITEMSAREA).send_keys('another')
+        self.chrome.find_element(*self.ALLITEMSAREA).send_keys(Keys.ENTER)
 
     def insert_search_external_items(self):
         self.chrome.get('https://jules.app/search/external')
-        self.chrome.find_element(*self.EXTERNALITEMSAREA).send_keys('last')
-        self.chrome.find_element(*self.EXTERNALITEMSAREA).send_keys(Keys.ENTER)
+        self.chrome.find_element(*self.ALLITEMSAREA).send_keys('last')
+        self.chrome.find_element(*self.ALLITEMSAREA).send_keys(Keys.ENTER)
 
     def check_search_item(self, message):
         actual_text = message
