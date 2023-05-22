@@ -1,6 +1,16 @@
+import time
+
 from behave import *
 
-@given('I am on the https://jules.app/search/all page')
+@when('I login to the Jules app page')
+def step_impl(context):
+    context.search_box_object.login_to_desired_page()
+
+@then('I am redirected to the search area')
+def step_impl(context):
+    context.search_box_object.check_login()
+
+@given('I am on the Jules app page')
 def step_impl(context):
     context.search_box_object.navigate_to_search_page()
 
@@ -8,6 +18,7 @@ def step_impl(context):
 @when('I insert "something" in the "all items" box and hit Enter')
 def step_impl(context):
     context.search_box_object.insert_search_all_items()
+
 
 @when('I insert "another" in the "my items" box and hit Enter')
 def step_impl(context):
@@ -20,3 +31,11 @@ def step_impl(context):
 @then('I should have "{message}" in the search area')
 def step_impl(context, message):
     context.search_box_object.check_search_item(message)
+
+@when('I press the notification button')
+def step_impl(context):
+    context.search_box_object.access_notification_bell()
+
+@then('I can see the notification area message')
+def step_impl(context):
+    context.search_box_object.check_notif_message()

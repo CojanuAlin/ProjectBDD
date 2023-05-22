@@ -23,6 +23,7 @@ def step_impl(context):
 @then('I can login into the application and I am redirected to the https://jules.app/search/all page')
 def step_impl(context):
     context.login_page_object.loged_in_page()
+    context.login_page_object.logout()
 
 
 @then('I can not login into the application and I receive "{error_message}" error')

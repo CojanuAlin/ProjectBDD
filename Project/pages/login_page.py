@@ -37,3 +37,8 @@ class LoginPage(BasePage):
         actual_error_no_user = self.chrome.find_element(*self.NO_USER).text
         assert actual_error_no_user == expected_no_user_error, 'Avem alta eroare!'
 
+    def logout(self):
+        self.chrome.find_element(By.XPATH, '//*[@id="root"]/div[1]/div[1]/div/div[2]/div[3]').click()
+        self.chrome.find_element(By.XPATH, '//*[@id="menu-list-grow"]/div[2]/li/span[1]').click()
+        self.chrome.find_element(By.XPATH, '/html/body/div[3]/div[3]/div/div[3]/button[2]/span[1]').click()
+
