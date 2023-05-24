@@ -3,7 +3,7 @@ import time
 from behave import *
 
 
-@when('I login to the Jules app page')
+@when("I login to the Jules app page")
 def step_impl(context):
     context.search_box_object.login_to_desired_page()
 
@@ -46,3 +46,13 @@ def step_impl(context):
 @then('I can see the notification area message')
 def step_impl(context):
     context.search_box_object.check_notif_message()
+
+
+@when('I click on the notification type "{notif_name}"')
+def step_impl(context, notif_name):
+    context.search_box_object.click_notification(notif_name)
+
+
+@then('I receive a disabled notification "{notif_message>}"')
+def step_impl(context, notif_message):
+    context.search_box_object.check_disabled_message(notif_message)

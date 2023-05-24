@@ -11,11 +11,9 @@ class SearchBox(BasePage):
     SEARCHTAG = (By.XPATH, '//*[@id="root"]/div[1]/div[3]/div/div[3]/div[2]/div[2]/div/div/div[1]/div/span[2]')
     NOTIFBELL = (By.XPATH, '//*[@id="root"]/div[1]/div[1]/div/div[2]/div[1]/div')
     NOTIFMESSAGE = (By.XPATH, '//*[@id="root"]/div[5]/div[2]/div[2]/span[2]')
-    NOTIFSETTINGS = (By.XPATH,
-                     '//*[@id="root"]/div[5]/div[2]/div[3]/div[1]/div/div/div/button[2]/span[1]/div/div[2]/span')
-    NOTIFSLIDER = (By.XPATH,
-                   '//*[@id="root"]/div[5]/div[2]/div[3]/div[2]/div[2]/div[1]/label/span[1]/span[1]/span/input')
-
+    NOTIFSETTINGS = (By.XPATH, '//*[@id="root"]/div[5]/div[2]/div[3]/div[1]/div/div/div/button[2]/span[1]/div')
+    NOTIFSLIDER = (By.XPATH, '//*[@class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"]')
+    NOTIFERROR = (By.XPATH, '//*[@id="client-snackbar"]/div')
 
     def login_to_desired_page(self):
         self.chrome.get('https://jules.app/sign-in')
@@ -60,4 +58,21 @@ class SearchBox(BasePage):
         expected = self.chrome.find_element(*self.NOTIFMESSAGE).text
         assert actual == expected, 'Is not the actual message'
 
+    def click_notification(self, notif_name):
+        self.chrome.find_element(*self.NOTIFBELL).click()
+        time.sleep(1)
+        self.chrome.find_element(*self.NOTIFSETTINGS).click()
+        time.sleep(1)
+        notification = self.chrome.find_elements(*self.NOTIFSLIDER)
+        for i in range(0, 10):
+            if notification[i].text == notif_name:
+                notification[i].click()
+                time.sleep(1)
+            else:
+                continue
+
+    def check_disabled_message(self, notif_message):
+        actual = self.chrome.find_element(*self.NOTIFERROR).text
+        expected = notif_message
+        assert actual == expected, 'Is not disabled'
 

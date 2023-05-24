@@ -20,4 +20,19 @@ Feature: Check first page interaction
     When I press the notification button
     Then I can see the notification area message
 
+  Scenario Outline: Go to notification settings and deselect all the notifications
+    When I click on the notification type "<notif_name>"
+    Then I receive a disabled notification "<notif_message>"
+  Examples:
+    | notif_name                   | notif_message                            |
+    | I.D. Expiration Dates        | Notification type disabled successfully! |
+    | Next Scheduled Service       | Notification type disabled successfully! |
+    | Vehicle Registration         | Notification type disabled successfully! |
+    | HVAC Filter Replacement      | Notification type disabled successfully! |
+    | Insurance Policy Expiration  | Notification type disabled successfully! |
+    | Warranty Expiration          | Notification type disabled successfully! |
+    | Item's Projected End of Life | Notification type disabled successfully! |
+    | Scheduled Vaccination        | Notification type disabled successfully! |
+    | Birthdays                    | Notification type disabled successfully! |
+
 
