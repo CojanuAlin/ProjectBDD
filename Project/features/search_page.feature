@@ -22,10 +22,10 @@ Feature: Check first page interaction
 
   Scenario Outline: Go to notification settings and deselect all the notifications
     When I click on the notification type "<notif_name>"
-    Then I receive a disabled notification "<notif_message>"
+    Then I receive a notification with the message "<notification_message>"
   Examples:
-    | notif_name                   | notif_message                            |
-    | I.D. Expiration Dates        | Notification type disabled successfully! |
+    | notif_name                   | notification_message                            |
+    | I.D. Expiration Dates        | Success |
     | Next Scheduled Service       | Notification type disabled successfully! |
     | Vehicle Registration         | Notification type disabled successfully! |
     | HVAC Filter Replacement      | Notification type disabled successfully! |

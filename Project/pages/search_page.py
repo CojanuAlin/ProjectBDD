@@ -18,7 +18,7 @@ class SearchBox(BasePage):
     def login_to_desired_page(self):
         self.chrome.get('https://jules.app/sign-in')
         user = self.chrome.find_element(By.XPATH, '//*[@id="root"]/div/div[2]/form/div/div[1]/div/div/input')
-        user.send_keys('nick_el_tigre@yahoo.com')
+        user.send_keys('alin_nicusor@outlook.com')
         password = self.chrome.find_element(By.XPATH, '//*[@id="root"]/div/div[2]/form/div/div[2]/div/div/input')
         password.send_keys('Digital1!')
         self.chrome.find_element(By.XPATH, '//*[@id="root"]/div/div[2]/form/div/div[3]/button/span[1]').click()

@@ -53,6 +53,6 @@ def step_impl(context, notif_name):
     context.search_box_object.click_notification(notif_name)
 
 
-@then('I receive a disabled notification "{notif_message>}"')
-def step_impl(context, notif_message):
-    context.search_box_object.check_disabled_message(notif_message)
+@then('I receive a notification with the message "{notification_message}"')
+def step_impl(context, notification_message):
+    context.search_box_object.check_disabled_message(notification_message)
