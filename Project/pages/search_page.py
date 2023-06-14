@@ -2,6 +2,8 @@ import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import re
+
 
 from base_page import BasePage
 
@@ -13,7 +15,7 @@ class SearchBox(BasePage):
     NOTIFMESSAGE = (By.XPATH, '//*[@id="root"]/div[5]/div[2]/div[2]/span[2]')
     NOTIFSETTINGS = (By.XPATH, '//*[@id="root"]/div[5]/div[2]/div[3]/div[1]/div/div/div/button[2]/span[1]/div')
     NOTIFSLIDER = (By.XPATH, '//*[@class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"]')
-    NOTIFERROR = (By.XPATH, '//*[@id="client-snackbar"]/div')
+    NOTIFERROR = (By.XPATH, '//*[@id="client-snackbar"]/div/text()')
 
     def login_to_desired_page(self):
         self.chrome.get('https://jules.app/sign-in')
@@ -72,7 +74,8 @@ class SearchBox(BasePage):
                 continue
 
     def check_disabled_message(self, notif_message):
-        actual = self.chrome.find_element(*self.NOTIFERROR).text
+        element = self.chrome.find_element(*self.NOTIFERROR)
+        actual = element.get_attribute('data')
         expected = notif_message
-        assert actual == expected, 'Is not disabled'
+        assert actual == expected, "Text doesn't match"
 
