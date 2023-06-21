@@ -56,3 +56,28 @@ def step_impl(context, notif_name):
 @then('I receive a notification with the message "{notification_message}"')
 def step_impl(context, notification_message):
     context.search_box_object.check_disabled_message(notification_message)
+
+
+@when('I press the question mark button')
+def step_impl(context):
+    context.search_box_object.click_question_mark()
+
+
+@when('I select "{question_item}"')
+def step_impl(context, question_item):
+    context.search_box_object.select_question_mark_item(question_item)
+
+
+@then('Another page opens with proper "{question_url}"')
+def step_impl(context, question_url):
+    context.search_box_object.check_question_item_url(question_url)
+
+
+@when('I click on the person icon and select My account')
+def step_impl(context):
+    context.search_box_object.select_my_account()
+
+
+@then('The number is saved in the phone field')
+def step_impl(context):
+    context.search_box_object.check_phone()

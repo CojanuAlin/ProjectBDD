@@ -3,6 +3,7 @@ Feature: Check first page interaction
   Background:
     Given I am on the Jules app page
 
+  @phone
   Scenario: I login to the desired page
     When I login to the Jules app page
     Then I am redirected to the search area
@@ -24,15 +25,30 @@ Feature: Check first page interaction
     When I click on the notification type "<notif_name>"
     Then I receive a notification with the message "<notification_message>"
   Examples:
-    | notif_name                   | notification_message                            |
+    | notif_name                   | notification_message |
     | I.D. Expiration Dates        | Success |
-    | Next Scheduled Service       | Notification type disabled successfully! |
-    | Vehicle Registration         | Notification type disabled successfully! |
-    | HVAC Filter Replacement      | Notification type disabled successfully! |
-    | Insurance Policy Expiration  | Notification type disabled successfully! |
-    | Warranty Expiration          | Notification type disabled successfully! |
-    | Item's Projected End of Life | Notification type disabled successfully! |
-    | Scheduled Vaccination        | Notification type disabled successfully! |
-    | Birthdays                    | Notification type disabled successfully! |
+    | Next Scheduled Service       | Success |
+    | Vehicle Registration         | Success |
+    | HVAC Filter Replacement      | Success |
+    | Insurance Policy Expiration  | Success |
+    | Warranty Expiration          | Success |
+    | Item's Projected End of Life | Success |
+    | Scheduled Vaccination        | Success |
+    | Birthdays                    | Success |
 
+  @question
+  Scenario Outline: Go to question mark button and select each item
+    When I press the question mark button
+    And I select "<question_item>"
+    Then Another page opens with proper "<question_url>"
+  Examples:
+    | question_item      | question_url                                 |
+    | FAQ                | https://static.jules.app/faq.html            |
+    | Tutorials          | https://julesapp.com/tutorials/              |
+    | Privacy Policy     | https://static.jules.app/privacy_policy.html |
+    | Terms & Conditions | https://static.jules.app/terms_of_use.html   |
 
+  @phone
+  Scenario: Check if you can save your phone number
+    When I click on the person icon and select My account
+    Then The number is saved in the phone field
