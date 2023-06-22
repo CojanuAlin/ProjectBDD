@@ -38,3 +38,7 @@ Feature: Check if you can login to the desired page
       And I click the login button
       Then I can login into the application and I am redirected to the https://jules.app/search/all page
 
+  Scenario: Check if you can Log Out of the application
+      When I insert the correct credentials and I login
+      And I click on the profile icon and then I logout
+      Then I am back on the https://jules.app/sign-in page

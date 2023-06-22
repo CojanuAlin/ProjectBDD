@@ -3,7 +3,7 @@ Feature: Check first page interaction
   Background:
     Given I am on the Jules app page
 
-  @phone
+
   Scenario: I login to the desired page
     When I login to the Jules app page
     Then I am redirected to the search area
@@ -49,6 +49,6 @@ Feature: Check first page interaction
     | Terms & Conditions | https://static.jules.app/terms_of_use.html   |
 
   @phone
-  Scenario: Check if you can save your phone number
+  Scenario: Check if you can see your phone number
     When I click on the person icon and select My account
     Then The number is saved in the phone field

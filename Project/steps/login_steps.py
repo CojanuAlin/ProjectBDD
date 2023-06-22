@@ -41,4 +41,14 @@ def step_impl(context, utilizator_gresit, parola):
 def step_impl(context, no_user):
     context.login_page_object.no_user_error(no_user)
 
+@when("I insert the correct credentials and I login")
+def step_impl(context):
+    context.login_page_object.insert_credentials()
 
+@when('I click on the profile icon and then I logout')
+def step_impl(context):
+    context.login_page_object.logout()
+
+@then('I am back on the https://jules.app/sign-in page')
+def step_impl(context):
+    context.login_page_object.loged_out_page()

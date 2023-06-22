@@ -42,3 +42,13 @@ class LoginPage(BasePage):
         self.chrome.find_element(By.XPATH, '//*[@id="menu-list-grow"]/div[2]/li/span[1]').click()
         self.chrome.find_element(By.XPATH, '/html/body/div[3]/div[3]/div/div[3]/button[2]/span[1]').click()
 
+    def insert_credentials(self):
+        self.chrome.find_element(*self.USERNAME).send_keys('alin_nicusor@outlook.com')
+        self.chrome.find_element(*self.PASSWORD).send_keys('Digital1!')
+        self.chrome.find_element(*self.LOGIN).click()
+
+    def loged_out_page(self):
+        expected_link = 'https://jules.app/sign-in'
+        actual_link = self.chrome.current_url
+        assert actual_link == expected_link, 'Nu sunt pe pagina de login!!'
+
