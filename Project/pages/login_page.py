@@ -4,11 +4,11 @@ from base_page import BasePage
 
 
 class LoginPage(BasePage):
-    USERNAME = (By.XPATH, '//*[@id="root"]/div/div[2]/form/div/div[1]/div/div/input')
-    PASSWORD = (By.XPATH, '//*[@id="root"]/div/div[2]/form/div/div[2]/div/div/input')
-    LOGIN = (By.XPATH, '//*[@id="root"]/div/div[2]/form/div/div[3]/button/span[1]')
+
     ERROR = (By.ID, 'client-snackbar')
-    NO_USER = (By.XPATH, '//*[@id="root"]/div/div[2]/form/div/div[1]/div/p')
+    NO_USER = (By.CSS_SELECTOR, 'div p')
+    LOGOUT = (By.CSS_SELECTOR, '[data-test-id="logout-option-business"]')
+    LOGOUTCONFIRM = (By.CSS_SELECTOR, '[data-test-id="confirm-logout-button"]')
 
     def navigate_to_login_page(self):
         self.chrome.get('https://jules.app')
@@ -38,9 +38,9 @@ class LoginPage(BasePage):
         assert actual_error_no_user == expected_no_user_error, 'Avem alta eroare!'
 
     def logout(self):
-        self.chrome.find_element(By.XPATH, '//*[@id="root"]/div[1]/div[1]/div/div[2]/div[3]').click()
-        self.chrome.find_element(By.XPATH, '//*[@id="menu-list-grow"]/div[2]/li/span[1]').click()
-        self.chrome.find_element(By.XPATH, '/html/body/div[3]/div[3]/div/div[3]/button[2]/span[1]').click()
+        self.chrome.find_element(*self.PERSONICON).click()
+        self.chrome.find_element(*self.LOGOUT).click()
+        self.chrome.find_element(*self.LOGOUTCONFIRM).click()
 
     def insert_credentials(self):
         self.chrome.find_element(*self.USERNAME).send_keys('alin_nicusor@outlook.com')

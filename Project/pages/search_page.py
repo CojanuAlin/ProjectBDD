@@ -6,30 +6,30 @@ from base_page import BasePage
 
 
 class SearchBox(BasePage):
-    ALLITEMSAREA = (By.XPATH, '//*[@id="root"]/div[1]/div[3]/div/div[3]/div[2]/div[2]/div/div/input')
+    PAGETITLE = (By.XPATH, '//*[@class="css-1h5x3dy"]')
+    ALLITEMSAREA = (By.XPATH, '//*[@class="MuiInputBase-input MuiInput-input"]')
     SEARCHTAG = (By.XPATH, '//*[@id="root"]/div[1]/div[3]/div/div[3]/div[2]/div[2]/div/div/div[1]/div/span[2]')
-    NOTIFBELL = (By.XPATH, '//*[@id="root"]/div[1]/div[1]/div/div[2]/div[1]/div')
-    NOTIFMESSAGE = (By.XPATH, '//*[@id="root"]/div[5]/div[2]/div[2]/span[2]')
-    NOTIFSETTINGS = (By.XPATH, '//*[@id="root"]/div[5]/div[2]/div[3]/div[1]/div/div/div/button[2]/span[1]/div')
+    NOTIFBELL = (By.XPATH, '//*[@class="css-mhea7a"][1]')
+    NOTIFMESSAGE = (By.XPATH, '//*[@class="css-fmd18w"]/span[2]')
+    NOTIFSETTINGS = (By.CSS_SELECTOR, '[data-test-id="notifications-settings-tab"]')
     NOTIFSLIDER = (By.XPATH, '//*[@class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"]')
     NOTIFERROR = (By.XPATH, '//*[@id="client-snackbar"]/div/div/span')
-    QUESTIONMARK = (By.XPATH, '//*[@id="root"]/div[1]/div[1]/div/div[2]/div[2]')
+    QUESTIONMARK = (By.XPATH, '//*[@class="css-mhea7a"][2]')
     QUESTIONMARKLIST = (By.XPATH, '//*[@id="menu-list-grow"]/a')
-    PERSONICON = (By.XPATH, '//*[@id="root"]/div[1]/div[1]/div/div[2]/div[3]')
     MYACCOUNT = (By.XPATH, '//*[@id="menu-list-grow"]/div[1]/li/span[1]')
-    PHONEAREA = (By.XPATH, '//*[@id="root"]/div[1]/div[4]/div[2]/div[3]/div[2]/div/div[3]/div/div[2]')
+    PHONEAREA = (By.CSS_SELECTOR, 'a[href^="tel"]')
 
     def login_to_desired_page(self):
         self.chrome.get('https://jules.app/sign-in')
-        user = self.chrome.find_element(By.XPATH, '//*[@id="root"]/div/div[2]/form/div/div[1]/div/div/input')
+        user = self.chrome.find_element(*self.USERNAME)
         user.send_keys('alin_nicusor@outlook.com')
-        password = self.chrome.find_element(By.XPATH, '//*[@id="root"]/div/div[2]/form/div/div[2]/div/div/input')
+        password = self.chrome.find_element(*self.PASSWORD)
         password.send_keys('Digital1!')
-        self.chrome.find_element(By.XPATH, '//*[@id="root"]/div/div[2]/form/div/div[3]/button/span[1]').click()
+        self.chrome.find_element(*self.LOGIN).click()
 
     def check_login(self):
         actual = 'The C Household'
-        expected = self.chrome.find_element(By.XPATH, '//*[@id="root"]/div[1]/div[1]/div/div[1]/span/span').text
+        expected = self.chrome.find_element(*self.PAGETITLE).text
         assert actual == expected, 'Not the actual message'
 
     def navigate_to_search_page(self):
